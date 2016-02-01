@@ -1,0 +1,46 @@
+@import "variables";
+
+.app__movie-modal__image {
+    display: inline-block;
+    width: 20%;
+    vertical-align: top;
+}
+
+.app__movie-modal__description--meta {
+    display: inline-block;
+    width: 43%;
+    padding: 0 1rem;
+    vertical-align: top;
+
+    h2 {
+        margin: 0 0 0.5rem 0;
+    }
+
+    h3 {
+        margin: 0;
+    }
+
+}
+
+.app__movie-modal__description--crew {
+    display: inline-block;
+    width: 28%;
+    padding: 0 1rem;
+
+    div {
+        margin-bottom: 1rem;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+}
+
+.app__movie-modal__heading-meta {
+    display: block;
+    font-size: 0.8rem;
+    color: $font-color--light;
+    font-weight: 300;
+}

@@ -1,0 +1,62 @@
+@import "variables";
+
+.app__card__image {
+    position: relative;
+
+    img {
+        width: 141px;
+        max-width: 100%;
+        height: 199px;
+        margin: 10px auto 0 auto;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+    }
+
+    .app__card__image__play-icon {
+        display: none;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translateX(-100%);
+
+        svg {
+            width: 3rem;
+            height: 3rem;
+        }
+
+    }
+
+    &:hover {
+        cursor: pointer;
+
+        .app__card__image__play-icon {
+            display: block;
+        }
+
+        img {
+            opacity: 0.6;
+        }
+    }
+
+}
+
+.app__card__heading {
+    width: 10rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.app__card-icon {
+    svg {
+        fill: $color__gray--light;
+    }
+}
+
+.app__card-icon--favorite--active {
+    svg {
+        fill: $icon-color--active;
+    }
+}
+
+.app__card__meta {
+    color: $color__gray--light;
+}

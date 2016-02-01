@@ -1,0 +1,130 @@
+<div class="app__container"
+     ng-cloak>
+
+	<!-- page toolbar -->
+	<md-toolbar class="md-warn">
+		<div class="md-toolbar-tools">
+			<h1>{{main.title}}</h1>
+		</div>
+	</md-toolbar>
+	<!-- :page toolbar -->
+
+	<div class="app__current-movie-widget">
+		<span class="app__heading--secondary">Now playing: </span>
+		<h2 class="m-0">{{main.playerActiveMovie.title}}</h2>
+	</div>
+
+	<div class="app__video-container">
+		<videogular>
+			<vg-media vg-src="main.config.sources"></vg-media>
+			<vg-controls>
+				<vg-play-pause-button></vg-play-pause-button>
+				<vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+				<vg-scrub-bar>
+					<vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+				</vg-scrub-bar>
+				<vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+				<vg-volume>
+					<vg-mute-button></vg-mute-button>
+					<vg-volume-bar></vg-volume-bar>
+				</vg-volume>
+				<vg-fullscreen-button></vg-fullscreen-button>
+			</vg-controls>
+			<vg-poster vg-url='main.config.plugins.poster'></vg-poster>
+		</videogular>
+	</div>
+
+	<!-- favorite list -->
+	<md-content layout="row pb-32"
+	            layout-padding
+	            layout-wrap
+	            layout-fill>
+
+		<h2 class="app__heading--divider">Favorite list movies</h2>
+		<h3 class="app__heading--secondary"
+		    ng-show="main.favoriteMovies.length == 0">No movies in your list</h3>
+		<!-- card -->
+		<md-whiteframe ng-repeat="movie in main.favoriteMovies track by $index"
+		               flex-gt-sm="20"
+		               layout
+		               layout-align="center center">
+			<md-card flex-gt-sm="100">
+				<div class="app__card__image"
+				     ng-click="main.moviePlayClickHandler(movie)">
+					<img ng-src="assets/images/{{movie.images.cover}}"
+					     class="md-card-image"
+					     alt="{{movie.title}}">
+					<md-icon class="app__card__image__play-icon"
+					         md-svg-icon="assets/images/icons/ic_play_circle_outline_white_24px.svg"></md-icon>
+				</div>
+				<md-card-title>
+					<md-card-title-text>
+						<span class="sm-headline truncate app__card__heading">{{movie.title}}</span>
+						<span class="sm-headline truncate app__card__meta">released: {{movie.meta.releaseYear}}</span>
+					</md-card-title-text>
+				</md-card-title>
+			</md-card>
+		</md-whiteframe>
+		<!-- :card -->
+	</md-content>
+	<!-- :favorite list -->
+
+
+	<!-- movies list -->
+	<md-content layout="row"
+	            layout-padding
+	            layout-wrap
+	            layout-fill
+	            style="padding-bottom: 2rem">
+
+		<h2 class="app__heading--divider">Popular movies</h2>
+		<!-- card -->
+		<md-whiteframe ng-repeat="movie in main.movies track by $index"
+		               flex-gt-sm="20"
+		               layout
+		               layout-align="center center">
+			<md-card flex-gt-sm="100">
+				<div class="app__card__image"
+				     ng-click="main.moviePlayClickHandler(movie)">
+					<img ng-src="assets/images/{{movie.images.cover}}"
+					     class="md-card-image"
+					     alt="{{movie.title}}">
+					<md-icon class="app__card__image__play-icon"
+					         md-svg-icon="assets/images/icons/ic_play_circle_outline_white_24px.svg"></md-icon>
+				</div>
+				<md-card-title>
+					<md-card-title-text>
+						<span class="sm-headline truncate app__card__heading">{{movie.title}}</span>
+						<span class="sm-headline truncate app__card__meta">released: {{movie.meta.releaseYear}}</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-actions layout="row"
+				                 layout-align="end center">
+					<md-button class="md-icon-button app__card-icon"
+					           ng-click="main.moviePlayClickHandler(movie)"
+					           aria-label="Play">
+						<md-icon md-svg-icon="assets/images/icons/ic_play_circle_outline_white_24px.svg"></md-icon>
+					</md-button>
+					<md-button class="md-icon-button app__card-icon"
+					           ng-click="main.movieMoreInfoClickHandler(movie)"
+					           aria-label="Info">
+						<md-icon md-svg-icon="assets/images/icons/ic_info_outline_white_24px.svg"></md-icon>
+					</md-button>
+					<md-button class="md-icon-button app__card-icon"
+					           ng-class="{'app__card-icon--favorite--active' : movie.isFavorite}"
+					           ng-click="main.movieToggleToFavoritesClickHandler(movie)"
+					           aria-label="Favorite">
+						<md-icon md-svg-icon="assets/images/icons/ic_favorite_black_24px.svg"></md-icon>
+					</md-button>
+				</md-card-actions>
+			</md-card>
+		</md-whiteframe>
+		<!-- :card -->
+	</md-content>
+	<!-- :movies list -->
+
+</div>
+
+<!--<div ng-show="main.showProgressIndicator">-->
+<!--<md-progress-circular md-mode="indeterminate"></md-progress-circular>-->
+<!--</div>-->
